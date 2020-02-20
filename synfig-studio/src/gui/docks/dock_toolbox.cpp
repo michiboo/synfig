@@ -276,6 +276,40 @@ Dock_Toolbox::add_state(const Smach::state_base *state)
 	refresh();
 }
 
+void
+Dock_Toolbox::add_layer()
+{
+
+	Gtk::StockItem stock_item;
+	Gtk::Stock::lookup(Gtk::StockID("gtk-add"),stock_item);
+	String name="popup-layer-new";
+	Gtk::ToggleToolButton *tool_button = manage(new class Gtk::ToggleToolButton(
+		*manage(new Gtk::Image(
+			stock_item.get_stock_id(),
+			Gtk::IconSize::from_name("synfig-small_icon_16x16") )),
+		stock_item.get_label() ));
+
+	// Gtk::AccelKey key;
+	// //Have a look to global function init_ui_manager() from app.cpp for "accel_path" definition
+	// Gtk::AccelMap::lookup_entry ("<Actions>/action_group_state_manager/popup-layer-new", key);
+	// //Gets the, is exist, accelerator representation for labels
+	// Glib::ustring accel_path = !key.is_null() ? key.get_abbrev () :"";
+	
+	tool_button->set_tooltip_text(stock_item.get_label()); //+" "+accel_path);
+	tool_button->show();
+
+	tool_item_group->insert(*tool_button);
+	tool_item_group->show_all();
+
+	state_button_map[name] = tool_button;
+	tool_button->signal_clicked().connect(
+		sigc::bind(
+			sigc::mem_fun(*this,&studio::Dock_Toolbox::change_state_),
+			state
+		)
+	refresh();
+}
+
 
 void
 Dock_Toolbox::update_tools()

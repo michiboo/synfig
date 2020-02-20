@@ -1693,11 +1693,11 @@ App::App(const synfig::String& basepath, int *argc, char ***argv):
 		state_manager->add_state(&state_eyedrop);
 
 		/* other */
-		state_manager->add_state(&state_text);
+		// state_manager->add_state(&state_text);
 		if(!getenv("SYNFIG_DISABLE_SKETCH" )) state_manager->add_state(&state_sketch);
 		if(!getenv("SYNFIG_DISABLE_BRUSH"  ) && App::enable_experimental_features) state_manager->add_state(&state_brush);
-		state_manager->add_state(&state_zoom);
-
+		state_manager->add_state(&state_zoom); 
+		state_manager->add_layer();
 
 		device_tracker->load_preferences();
 		// If the default bline width is modified before focus a canvas

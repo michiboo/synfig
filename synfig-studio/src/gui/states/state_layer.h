@@ -1,6 +1,6 @@
 /* === S Y N F I G ========================================================= */
-/*!	\file statemanager.h
-**	\brief Template Header
+/*!	\file state_zoom.h
+**	\brief Zoom tool Header
 **
 **	$Id$
 **
@@ -22,14 +22,12 @@
 
 /* === S T A R T =========================================================== */
 
-#ifndef __SYNFIG_STATEMANAGER_H
-#define __SYNFIG_STATEMANAGER_H
+#ifndef __SYNFIG_STATE_ZOOM_H
+#define __SYNFIG_STATE_ZOOM_H
 
 /* === H E A D E R S ======================================================= */
-
-#include <glibmm/refptr.h>
-#include <vector>
 #include "smach.h"
+
 
 /* === M A C R O S ========================================================= */
 
@@ -37,30 +35,18 @@
 
 /* === C L A S S E S & S T R U C T S ======================================= */
 
-namespace Gtk { class ActionGroup; }
-
-typedef unsigned int guint;
-
 namespace studio {
-	class StateManager
+
+class StateLayer_Context;
+
+class StateLayer : public Smach::state<StateLayer_Context>
 {
-private:
-	Glib::RefPtr<Gtk::ActionGroup> state_group;
-
-	guint merge_id;
-	std::vector<guint> merge_id_list;
-
-	void change_state_(const Smach::state_base *state);
-
 public:
-	StateManager();
+	StateLayer();
+	~StateLayer();
+}; // END of class StateLayer
 
-	~StateManager();
-	void add_layer();
-	void add_state(const Smach::state_base *state);
-	Glib::RefPtr<Gtk::ActionGroup> action_group_layer_ops;
-	Glib::RefPtr<Gtk::ActionGroup> get_action_group();
-};
+extern StateLayer state_layer;
 
 }; // END of namespace studio
 

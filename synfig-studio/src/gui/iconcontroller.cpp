@@ -162,6 +162,7 @@ IconController::init_icons(const synfig::String& path_to_icons)
 	INIT_STOCK_ICON(text, "tool_text_icon." IMAGE_EXT, _("Text Tool"));
 	INIT_STOCK_ICON(gradient, "tool_gradient_icon." IMAGE_EXT, _("Gradient Tool"));
 	INIT_STOCK_ICON(star, "tool_star_icon." IMAGE_EXT, _("Star Tool"));
+	INIT_STOCK_ICON(add_layer, "tool_add_layer_icon." IMAGE_EXT, _("add_layer Tool"));
 	// ToolBox Others
 	INIT_STOCK_ICON(reset_colors, "reset_colors_icon." IMAGE_EXT, _("Reset Colors"));
 	INIT_STOCK_ICON(swap_colors, "swap_colors_icon." IMAGE_EXT, _("Swap Colors"));

@@ -79,11 +79,29 @@ StateManager::change_state_(const Smach::state_base *state)
 	App::dock_toolbox->change_state_(state);
 }
 
+void 
+StateManager::add_layer(){
+	Gtk::StockItem stock_item; 
+	Gtk::Stock::lookup(Gtk::StockID("gtk-add"),stock_item);
+	Glib::RefPtr<Gtk::Action> action(
+		Gtk::Action::create("popup-layer-new", stock_item.get_stock_id(),
+			stock_item.get_label(),
+			stock_item.get_label())
+	);
+	state_group->add(action);
+	String uid_def;
+	uid_def = "<ui><popup action='menu-main'><menu action='menu-toolbox'><menuitem action='popup-layer-new' /></menu></popup></ui>";
+	App::ui_manager()->add_ui_from_string(uid_def);
+	uid_def = "<ui><menubar action='menubar-main'><menu action='menu-toolbox'><menuitem action='popup-layer-new' /></menu></menubar></ui>";
+	App::ui_manager()->add_ui_from_string(uid_def);
+	App::ui_manager()->ensure_update();
+	App::dock_toolbox->add_layer();
+}
+
 void
 StateManager::add_state(const Smach::state_base *state)
 {
 	String name(state->get_name());
-
 	Gtk::StockItem stock_item;
 	Gtk::Stock::lookup(Gtk::StockID("synfig-"+name),stock_item);
 

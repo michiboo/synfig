@@ -81,6 +81,8 @@ public:
 
 	void update_tools();
 
+	void add_layer();
+
 	void refresh() { update_tools(); }
 
 	void set_active_state(const synfig::String& statename);
